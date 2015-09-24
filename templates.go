@@ -13,13 +13,40 @@ func main() {
 }
 `
 
-var tplConfig string = `{
-	dev:
-		debug: true
-		backends:
-			sql:
-				url: "postgres://test:test@localhost/test"
-}
+var tplConfig string = `
+dev:
+	debug: true
+
+	# Path to store temporary files in.
+	tmpDir: tmp
+	
+	# Host to serve on.	
+	host: "localhost"
+	# Port to serve on.
+	port: 8000
+
+	# URL used by the frontend to reach the app.
+	url: "localhost:8000"
+	
+	# Enable server side rendering with phantomjs.
+	serverRenderer:
+	  enabled: true
+	  cache: fs
+	  cacheLifetime: 3600
+	
+	# Configure the frontend template.
+	frontend:
+	  indexTpl: public/index.html
+
+	# Enable crawling of all public app pages to populate the cache.
+	crawler:
+	  onRun: true
+	  concurrentRequests: 1
+
+	# Backend configuration.
+	backends:
+		sql:
+			url: "postgres://test:test@localhost/test"
 `
 
 var tplMainApp string = `
@@ -29,6 +56,7 @@ import(
 	kit "github.com/theduke/go-appkit"
 	"github.com/theduke/go-appkit/app"
 	"github.com/theduke/go-appkit/users"
+
 	app_users "{{userPkg}}"
 	// APPKIT:APP_IMPORTS - REMOVING THIS COMMENT WILL BREAK THE appkit cli TOOL!
 )
@@ -43,10 +71,6 @@ func BuildApp() kit.App {
 	userService := users.NewService(nil, app.DefaultBackend(), &app_users.Profile{})
 	app.RegisterUserService(userService)
 
-	// Configure FileService with filesystem backend.
-	fileService := files.NewFileServiceWithFs(nil, "data")
-	app.RegisterFileService(fileService)
-	
 	BuildMigrations(app)
 	app.PrepareBackends()
 
