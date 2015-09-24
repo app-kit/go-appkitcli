@@ -15,39 +15,39 @@ func main() {
 
 var tplConfig string = `
 dev:
-	debug: true
+  debug: true
 
-	# Path to store temporary files in.
-	tmpDir: tmp
-	dataDir: data
-	
-	# Host to serve on.	
-	host: "localhost"
-	# Port to serve on.
-	port: 8000
+  # Path to store temporary files in.
+  tmpDir: tmp
+  dataDir: data
+  
+  # Host to serve on.  
+  host: "localhost"
+  # Port to serve on.
+  port: 8000
 
-	# URL used by the frontend to reach the app.
-	url: "localhost:8000"
-	
-	# Enable server side rendering with phantomjs.
-	serverRenderer:
-	  enabled: true
-	  cache: fs
-	  cacheLifetime: 3600
-	
-	# Configure the frontend template.
-	frontend:
-	  indexTpl: public/index.html
+  # URL used by the frontend to reach the app.
+  url: "localhost:8000"
+  
+  # Enable server side rendering with phantomjs.
+  serverRenderer:
+    enabled: true
+    cache: fs
+    cacheLifetime: 3600
+  
+  # Configure the frontend template.
+  frontend:
+    indexTpl: public/index.html
 
-	# Enable crawling of all public app pages to populate the cache.
-	crawler:
-	  onRun: true
-	  concurrentRequests: 1
+  # Enable crawling of all public app pages to populate the cache.
+  crawler:
+    onRun: true
+    concurrentRequests: 1
 
-	# Backend configuration.
-	backends:
-		sql:
-			url: "postgres://test:test@localhost/test"
+  # Backend configuration.
+  backends:
+    sql:
+      url: "postgres://test:test@localhost/test"
 `
 
 var tplMainApp string = `
@@ -178,7 +178,7 @@ import(
 )
 
 // Avoid compiler errors.
-var _ = db.BaseStrIDModel{}
+var _ = db.StrIDModel{}
 // You can remove this if you do plan on creating a model connected to a user in this file.
 var _ = users.User{}
 
@@ -191,7 +191,7 @@ var tplModel string = `
  */
 
 type {{name}} struct {
-	db.BaseIntIDModel
+	db.IntIDModel
 }
 
 func (m {{name}}) Collection() string {
@@ -209,7 +209,7 @@ import(
 )
 
 // Avoid compiler errors.
-var _ = db.BaseStrIDModel{}
+var _ = db.StrIDModel{}
 var _ kit.Model = nil
 
 // APPKIT:RESOURCES - REMOVING THIS COMMENT WILL BREAK THE appkit cli TOOL!
