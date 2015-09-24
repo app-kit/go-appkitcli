@@ -221,7 +221,7 @@ func Resource(rootPath, app, resourceName string) {
 		os.Exit(1)
 	}
 
-	collection := db.CamelCaseToUnderscore(resourceName)
+	collection := db.Pluralize(db.CamelCaseToUnderscore(resourceName))
 	if collection[len(collection)-1] != 's' {
 		collection += "s"
 	}
