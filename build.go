@@ -282,7 +282,7 @@ func Bootstrap(rootPath, name, pkgUrl, backend string) bool {
 	}
 
 	// Write example config.
-	utils.WriteFile(path.Join(rootPath, "config.yaml"), []byte(tplConfig), false)
+	utils.WriteFile(path.Join(rootPath, name, "config.yaml"), []byte(tplConfig), false)
 
 	return true
 }
