@@ -19,6 +19,7 @@ dev:
 
 	# Path to store temporary files in.
 	tmpDir: tmp
+	dataDir: data
 	
 	# Host to serve on.	
 	host: "localhost"
