@@ -9,7 +9,10 @@ to create new apps and resources.
 
 First, install the command.
 
-`go install github.com/theduke/go-appkitcli/appkit`
+`
+go get github.com/theduke/go-appkitcli
+go install github.com/theduke/go-appkitcli/appkit
+`
 
 
 ### Create a new project.
