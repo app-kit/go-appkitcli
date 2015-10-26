@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/theduke/go-appkitcli"
+	"github.com/app-kit/go-appkitcli"
 )
 
 func main() {

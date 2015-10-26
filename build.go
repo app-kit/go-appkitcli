@@ -8,7 +8,7 @@ import (
 
 	db "github.com/theduke/go-dukedb"
 
-	"github.com/theduke/go-appkit/utils"
+	"github.com/go-appkit/go-appkit/utils"
 )
 
 func checkErr(err error) {
